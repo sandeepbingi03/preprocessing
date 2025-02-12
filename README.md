@@ -9,6 +9,7 @@ JSONL_FOLDER = r"C:/Users/Desktop/LLM Logs/preprocessed/preprocessed_logs_jsonl"
 PROCESSED_LOG = r"C:/Users/Desktop/LLM Logs/processed_files.txt"
 
 # Define keys to remove from JSON
+
 keys_to_remove = {
     '_time', 'f_app_id', 'deployment', 'host', 'info_splunk_index', 'linecount',
     'nozzle-event-counter', 'punct', 'splunk_server', 'subscription-id',
@@ -55,7 +56,7 @@ def log_processed_file(filename):
         f.write(filename + "\n")
 
 def convert_csv_to_jsonl(csv_file, jsonl_file):
-    """Convert CSV file to JSONL format, keeping only the '_raw' column."""
+   
     with open(csv_file, "r", encoding="utf-8") as infile, open(jsonl_file, "w", encoding="utf-8") as outfile:
         reader = csv.DictReader(infile)
         for row in reader:
@@ -64,7 +65,6 @@ def convert_csv_to_jsonl(csv_file, jsonl_file):
                 outfile.write("\n")
 
 def preprocess_jsonl(input_file, output_file):
-    """Process JSONL to extract only key_order keys from '_raw'."""
     with open(input_file, "r", encoding="utf-8") as infile, open(output_file, "w", encoding="utf-8") as outfile:
         for line in infile:
             try:
